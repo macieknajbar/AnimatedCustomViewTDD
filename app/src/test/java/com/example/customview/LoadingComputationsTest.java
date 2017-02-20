@@ -27,17 +27,17 @@ public class LoadingComputationsTest {
 
     @Test public void calculatesSinusoidResultBasedOnTime() {
         loadingComputations = new LoadingComputations(0.f);
-        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(0, 0), DELTA);
-        assertEquals((1./2 + 1)/2, loadingComputations.verticalPosition(83, 0), DELTA);
-        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(125, 0), DELTA);
-        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(250, 0), DELTA);
+        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(0, 250), DELTA);
+        assertEquals((1./2 + 1)/2, loadingComputations.verticalPosition(83, 250), DELTA);
+        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(125, 250), DELTA);
+        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(250, 250), DELTA);
     }
 
     @Test public void calculatesSinusoidResultBasedOnTimeWithOffset125ms() {
         loadingComputations = new LoadingComputations(0.f);
-        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(-125, 125L), DELTA);
-        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(0, 125L), DELTA);
-        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(125, 125L), DELTA);
+        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(-125, 375L), DELTA);
+        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(0, 375L), DELTA);
+        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(125, 375L), DELTA);
     }
 
     @Test public void dotsRestTime() {
@@ -49,21 +49,28 @@ public class LoadingComputationsTest {
 
     @Test public void dotsResumeAfterAnimationPause() {
         loadingComputations = new LoadingComputations(0.f);
-        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(1500, 0), DELTA);
-        assertEquals((1./2 + 1)/2, loadingComputations.verticalPosition(1583, 0), DELTA);
-        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(1625, 0), DELTA);
-        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(1750, 0), DELTA);
+        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(1500, 250), DELTA);
+        assertEquals((1./2 + 1)/2, loadingComputations.verticalPosition(1583, 250), DELTA);
+        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(1625, 250), DELTA);
+        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(1750, 250), DELTA);
     }
 
     @Test public void twoDotsRunningIndependently() {
         loadingComputations = new LoadingComputations(0.f);
-        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(0, 0), DELTA);
-        assertEquals(0., loadingComputations.verticalPosition(0, 1000), DELTA);
-        assertEquals((1./2 + 1)/2, loadingComputations.verticalPosition(83, 0), DELTA);
-        assertEquals(0., loadingComputations.verticalPosition(83, 1000), DELTA);
-        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(125, 0), DELTA);
-        assertEquals(0., loadingComputations.verticalPosition(125, 1000), DELTA);
-        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(250, 0), DELTA);
-        assertEquals(0., loadingComputations.verticalPosition(250, 1000), DELTA);
+        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(0, 250), DELTA);
+        assertEquals(0., loadingComputations.verticalPosition(0, 1250), DELTA);
+        assertEquals((1./2 + 1)/2, loadingComputations.verticalPosition(83, 250), DELTA);
+        assertEquals(0., loadingComputations.verticalPosition(83, 1250), DELTA);
+        assertEquals((Math.sqrt(2)/2 + 1)/2, loadingComputations.verticalPosition(125, 250), DELTA);
+        assertEquals(0., loadingComputations.verticalPosition(125, 1250), DELTA);
+        assertEquals((1 + 1)/2, loadingComputations.verticalPosition(250, 250), DELTA);
+        assertEquals(0., loadingComputations.verticalPosition(250, 1250), DELTA);
+    }
+
+    @Test public void sinusoidStartsFromTheLowestValue() {
+        loadingComputations = new LoadingComputations(0.f);
+        assertEquals(0., loadingComputations.verticalPosition(0, 0), DELTA);
+        assertEquals((0. + 1)/2, loadingComputations.verticalPosition(250, 0), DELTA);
+        assertEquals((1. + 1)/2, loadingComputations.verticalPosition(500, 0), DELTA);
     }
 }

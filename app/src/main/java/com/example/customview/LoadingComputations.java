@@ -19,6 +19,6 @@ public class LoadingComputations {
             return 0.0;
         }
         double X = 2 * Math.PI * time / ANIMATION_LENGTH;
-        return (Math.sin(X) + 1) / 2.;
+        return (Math.sin(X - Math.PI/2) + 1) / 2.;
     }
 }
