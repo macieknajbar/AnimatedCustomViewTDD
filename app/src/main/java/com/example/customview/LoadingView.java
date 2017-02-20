@@ -38,8 +38,8 @@ public class LoadingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (framesManager.canGo()) {
-            canvas.drawText(String.format(Locale.getDefault(), FPS, framesManager.fps()), 0.f, fpsPaint.getTextSize(), fpsPaint);
+//        if (framesManager.canGo()) {
+//            canvas.drawText(String.format(Locale.getDefault(), FPS, framesManager.fps()), 0.f, fpsPaint.getTextSize(), fpsPaint);
 
             canvas.drawCircle(
                     loadingComputations.dpToPx(50) - loadingComputations.dpToPx(12),
@@ -55,9 +55,9 @@ public class LoadingView extends View {
                     loadingComputations.dpToPx(50) + loadingComputations.dpToPx(12),
                     loadingComputations.dpToPx(50)  - loadingComputations.dpToPx(20) * (float)loadingComputations.verticalPosition(System.currentTimeMillis(), 250),
                     loadingComputations.dpToPx(3), dotPaint);
-        }
+//        }
 
-        framesManager.frame();
+//        framesManager.frame();
         invalidate();
     }
 }

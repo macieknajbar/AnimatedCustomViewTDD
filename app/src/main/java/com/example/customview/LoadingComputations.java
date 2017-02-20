@@ -2,6 +2,7 @@ package com.example.customview;
 
 public class LoadingComputations {
     private static final long ANIMATION_LENGTH = 1000;
+    private static final long ANIMATION_PAUSE = 500;
     private float density;
 
     public LoadingComputations(float density) {
@@ -13,7 +14,11 @@ public class LoadingComputations {
     }
 
     public double verticalPosition(long time, long offset) {
-        double X = 2 * Math.PI * (time + offset) / ANIMATION_LENGTH;
+        time = (time + offset) % (ANIMATION_LENGTH + ANIMATION_PAUSE);
+        if (time >= ANIMATION_LENGTH) {
+            return 0.0;
+        }
+        double X = 2 * Math.PI * time / ANIMATION_LENGTH;
         return (Math.sin(X) + 1) / 2.;
     }
 }
